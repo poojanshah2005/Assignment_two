@@ -66,7 +66,6 @@ public class MusicListPresenterImple implements IMusicListPresenter {
                         Log.i("throwable.getCause()", String.valueOf(throwable.getCause()));
                     }
 
-
                 });
     }
 }

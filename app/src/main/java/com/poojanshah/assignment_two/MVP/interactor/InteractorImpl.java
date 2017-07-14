@@ -10,7 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.poojanshah.assignment_two.Consts.ROCK_MUSIC;
+import static com.poojanshah.assignment_two.Consts.BASE_URL;
 
 /**
  * Created by shahp on 14/07/2017.
@@ -34,7 +34,7 @@ public class InteractorImpl implements Interactor {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(ROCK_MUSIC)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)

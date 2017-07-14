@@ -10,6 +10,6 @@ import retrofit2.http.GET;
  */
 
 public interface RequestInterface {
-    @GET(Consts.ROCK_MUSIC)
+    @GET(Consts.ROCK_PART)
     Observable<Music> getMusicList();
 }
