@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by shahp on 14/07/2017.
  */
 
-public class MusicListPresenterImple implements IMusicListPresenter {
+public class MusicListPopPresenterImple extends MusicListPresenterImple implements IMusicListPresenter {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
 
@@ -23,7 +23,8 @@ public class MusicListPresenterImple implements IMusicListPresenter {
 //    }
 
 
-    public MusicListPresenterImple(InteractorImpl interactor_) {
+    public MusicListPopPresenterImple(InteractorImpl interactor_) {
+        super(interactor_);
         this.interactor_ = interactor_;
     }
 

@@ -45,7 +45,17 @@ public class InteractorImpl implements Interactor {
     }
 
     @Override
-    public Observable<Music> getMusicList() {
-        return requestInterface.getMusicList();
+    public Observable<Music> getMusicRockList() {
+        return requestInterface.getMusicRockList();
+    }
+
+    @Override
+    public Observable<Music> getMusicClassicList() {
+        return requestInterface.getMusicClassicList();
+    }
+
+    @Override
+    public Observable<Music> getMusicPopList() {
+        return requestInterface.getMusicPopList();
     }
 }

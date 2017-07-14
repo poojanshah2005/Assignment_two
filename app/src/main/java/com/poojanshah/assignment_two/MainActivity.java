@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.poojanshah.assignment_two.MVP.IMusicListView;
+import com.poojanshah.assignment_two.MVP.MusicListClassicPresenterImple;
 import com.poojanshah.assignment_two.MVP.MusicListPresenterImple;
+import com.poojanshah.assignment_two.MVP.MusicListRockPresenterImple;
 import com.poojanshah.assignment_two.MVP.interactor.InteractorImpl;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         setContentView(R.layout.activity_main);
 
         interactor_ = new InteractorImpl();
-        musicListPresenterImple = new MusicListPresenterImple(interactor_);
+        musicListPresenterImple = new MusicListRockPresenterImple(interactor_);
 
         musicListPresenterImple.attachView(this);
 

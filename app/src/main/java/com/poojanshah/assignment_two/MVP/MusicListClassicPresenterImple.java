@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by shahp on 14/07/2017.
  */
 
-public class MusicListPresenterImple implements IMusicListPresenter {
+public class MusicListClassicPresenterImple extends MusicListPresenterImple implements IMusicListPresenter {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
 
@@ -23,7 +23,8 @@ public class MusicListPresenterImple implements IMusicListPresenter {
 //    }
 
 
-    public MusicListPresenterImple(InteractorImpl interactor_) {
+    public MusicListClassicPresenterImple(InteractorImpl interactor_) {
+        super(interactor_);
         this.interactor_ = interactor_;
     }
 
@@ -47,7 +48,7 @@ public class MusicListPresenterImple implements IMusicListPresenter {
                     public void accept(Boolean isConnectedToInternet) {
                         // do something with isConnectedToInternet value
                         if (isConnectedToInternet) {
-                            interactor_.getMusicPopList()
+                            interactor_.getMusicClassicList()
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.newThread())
                                     .subscribe(this::onSuccess, this::OnError);

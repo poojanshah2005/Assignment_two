@@ -11,11 +11,11 @@ import retrofit2.http.GET;
 
 public interface RequestInterface {
     @GET(Consts.ROCK_PART)
-    Observable<Music> getMusicList();
+    Observable<Music> getMusicRockList();
 
-//    @GET(Consts.CLASSIC_PART)
-//    Observable<Music> getMusicList();
-//
-//    @GET(Consts.POP_PART)
-//    Observable<Music> getMusicList();
+    @GET(Consts.CLASSIC_PART)
+    Observable<Music> getMusicClassicList();
+
+    @GET(Consts.POP_PART)
+    Observable<Music> getMusicPopList();
 }

@@ -10,6 +10,8 @@ import io.reactivex.Observable;
 
 public interface Interactor {
 
-    Observable<Music> getMusicList();
+    Observable<Music> getMusicRockList();
+    Observable<Music> getMusicClassicList();
+    Observable<Music> getMusicPopList();
 
 }
