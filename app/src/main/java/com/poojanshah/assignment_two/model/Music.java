@@ -4,11 +4,12 @@ package com.poojanshah.assignment_two.model;
  * Created by shahp on 14/07/2017.
  */
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Music {
+public class Music implements Serializable {
 
     @SerializedName("resultCount")
     @Expose

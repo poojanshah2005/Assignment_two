@@ -1,5 +1,6 @@
 package com.poojanshah.assignment_two;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,35 +22,50 @@ import com.poojanshah.assignment_two.model.Result;
 
 public class MainActivity extends AppCompatActivity implements IMusicListView {
 
-    private TextView mTextMessage;
 
     IMusicListPresenter iMusicListPresenter;
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
+    android.support.v4.app.FragmentManager fragmentManager;
+    Music music;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Results results = new Results();
+            Bundle bundle = new Bundle();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    mTextMessage.setText(R.string.title_home);
+                    fragmentManager = getSupportFragmentManager();
+                    bundle.putSerializable("Music",music);
+                    fragmentManager.beginTransaction()
+                            .add(R.id.content_main, results)
+                            .commit();
                     return true;
                 case R.id.navigation_dashboard:
                     iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    mTextMessage.setText(R.string.title_dashboard);
+                    fragmentManager = getSupportFragmentManager();
+                    bundle.putSerializable("Music",music);
+                    fragmentManager.beginTransaction()
+                            .add(R.id.content_main, results)
+                            .commit();
                     return true;
                 case R.id.navigation_notifications:
                     iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    mTextMessage.setText(R.string.title_notifications);
+                    fragmentManager = getSupportFragmentManager();
+                    bundle.putSerializable("Music",music);
+                    fragmentManager.beginTransaction()
+                            .add(R.id.content_main, results)
+                            .commit();
                     return true;
             }
             return false;
@@ -63,17 +79,6 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         setContentView(R.layout.activity_main);
         this.iMusicListView = this;
         interactor_ = new InteractorImpl();
-//        iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
-//        iMusicListPresenter.attachView(this);
-//        iMusicListPresenter.performMusicListDisplay();
-//        iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
-//        iMusicListPresenter.attachView(this);
-//        iMusicListPresenter.performMusicListDisplay();
-//        iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
-//        iMusicListPresenter.attachView(this);
-//        iMusicListPresenter.performMusicListDisplay();
-
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -83,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         for(Result r: music.getResults()){
             Log.i("MusicLog", r.getTrackName());
         }
+        this.music = music;
     }
 
     @Override
