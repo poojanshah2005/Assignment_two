@@ -2,7 +2,10 @@ package com.poojanshah.assignment_two;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,16 @@ public class Results extends Fragment {
     private String mParam1;
     private String mParam2;
     private Music music;
+    private RecyclerView mRecyclerView;
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleView);
+        mRecyclerView.setAdapter(new MusicAdapter(music,getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+    }
 
     public Results() {
         // Required empty public constructor
@@ -59,7 +71,7 @@ public class Results extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         Bundle b = getArguments();
-        Music music = b.getParcelable("doctor_id");
+        music = b.getParcelable("doctor_id");
         for(Result r: music.getResults()){
             Log.i("MusicLog 63", r.getTrackName());
         }
