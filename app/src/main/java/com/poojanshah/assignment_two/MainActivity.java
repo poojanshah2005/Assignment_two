@@ -1,5 +1,6 @@
 package com.poojanshah.assignment_two;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     IMusicListPresenter iMusicListPresenter;
     InteractorImpl interactor_;
+    IMusicListView iMusicListView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,12 +34,21 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
+                    iMusicListPresenter.attachView(iMusicListView);
+                    iMusicListPresenter.performMusicListDisplay();
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
+                    iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
+                    iMusicListPresenter.attachView(iMusicListView);
+                    iMusicListPresenter.performMusicListDisplay();
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
+                    iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
+                    iMusicListPresenter.attachView(iMusicListView);
+                    iMusicListPresenter.performMusicListDisplay();
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
@@ -50,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        this.iMusicListView = this;
         interactor_ = new InteractorImpl();
-        iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
-        iMusicListPresenter.attachView(this);
-        iMusicListPresenter.performMusicListDisplay();
+//        iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
+//        iMusicListPresenter.attachView(this);
+//        iMusicListPresenter.performMusicListDisplay();
 //        iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
 //        iMusicListPresenter.attachView(this);
 //        iMusicListPresenter.performMusicListDisplay();
