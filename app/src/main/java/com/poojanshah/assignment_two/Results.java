@@ -3,9 +3,13 @@ package com.poojanshah.assignment_two;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.poojanshah.assignment_two.model.Music;
+import com.poojanshah.assignment_two.model.Result;
 
 
 /**
@@ -22,6 +26,7 @@ public class Results extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Music music;
 
 
     public Results() {
@@ -52,6 +57,11 @@ public class Results extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+        Bundle b = getArguments();
+        Music music = b.getParcelable("doctor_id");
+        for(Result r: music.getResults()){
+            Log.i("MusicLog 63", r.getTrackName());
         }
     }
 

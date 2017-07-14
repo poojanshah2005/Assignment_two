@@ -3,11 +3,14 @@ package com.poojanshah.assignment_two.model;
 /**
  * Created by shahp on 14/07/2017.
  */
-
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class Result implements Parcelable
+{
 
     @SerializedName("wrapperType")
     @Expose
@@ -102,6 +105,54 @@ public class Result {
     @SerializedName("isStreamable")
     @Expose
     private Boolean isStreamable;
+    public final static Parcelable.Creator<Result> CREATOR = new Creator<Result>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Result createFromParcel(Parcel in) {
+            Result instance = new Result();
+            instance.wrapperType = ((String) in.readValue((String.class.getClassLoader())));
+            instance.kind = ((String) in.readValue((String.class.getClassLoader())));
+            instance.artistId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.collectionId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.trackId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.artistName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collectionName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.trackName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collectionCensoredName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.trackCensoredName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.artistViewUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collectionViewUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.trackViewUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.previewUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.artworkUrl30 = ((String) in.readValue((String.class.getClassLoader())));
+            instance.artworkUrl60 = ((String) in.readValue((String.class.getClassLoader())));
+            instance.artworkUrl100 = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collectionPrice = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.trackPrice = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.releaseDate = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collectionExplicitness = ((String) in.readValue((String.class.getClassLoader())));
+            instance.trackExplicitness = ((String) in.readValue((String.class.getClassLoader())));
+            instance.discCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.discNumber = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.trackCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.trackNumber = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.trackTimeMillis = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.country = ((String) in.readValue((String.class.getClassLoader())));
+            instance.currency = ((String) in.readValue((String.class.getClassLoader())));
+            instance.primaryGenreName = ((String) in.readValue((String.class.getClassLoader())));
+            instance.isStreamable = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            return instance;
+        }
+
+        public Result[] newArray(int size) {
+            return (new Result[size]);
+        }
+
+    }
+            ;
 
     public String getWrapperType() {
         return wrapperType;
@@ -349,6 +400,44 @@ public class Result {
 
     public void setIsStreamable(Boolean isStreamable) {
         this.isStreamable = isStreamable;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(wrapperType);
+        dest.writeValue(kind);
+        dest.writeValue(artistId);
+        dest.writeValue(collectionId);
+        dest.writeValue(trackId);
+        dest.writeValue(artistName);
+        dest.writeValue(collectionName);
+        dest.writeValue(trackName);
+        dest.writeValue(collectionCensoredName);
+        dest.writeValue(trackCensoredName);
+        dest.writeValue(artistViewUrl);
+        dest.writeValue(collectionViewUrl);
+        dest.writeValue(trackViewUrl);
+        dest.writeValue(previewUrl);
+        dest.writeValue(artworkUrl30);
+        dest.writeValue(artworkUrl60);
+        dest.writeValue(artworkUrl100);
+        dest.writeValue(collectionPrice);
+        dest.writeValue(trackPrice);
+        dest.writeValue(releaseDate);
+        dest.writeValue(collectionExplicitness);
+        dest.writeValue(trackExplicitness);
+        dest.writeValue(discCount);
+        dest.writeValue(discNumber);
+        dest.writeValue(trackCount);
+        dest.writeValue(trackNumber);
+        dest.writeValue(trackTimeMillis);
+        dest.writeValue(country);
+        dest.writeValue(currency);
+        dest.writeValue(primaryGenreName);
+        dest.writeValue(isStreamable);
+    }
+
+    public int describeContents() {
+        return 0;
     }
 
 }

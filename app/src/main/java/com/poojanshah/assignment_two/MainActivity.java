@@ -36,36 +36,22 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Results results = new Results();
             Bundle bundle = new Bundle();
+            fragmentManager = getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    fragmentManager = getSupportFragmentManager();
-                    bundle.putSerializable("Music",music);
-                    fragmentManager.beginTransaction()
-                            .add(R.id.content_main, results)
-                            .commit();
                     return true;
                 case R.id.navigation_dashboard:
                     iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    fragmentManager = getSupportFragmentManager();
-                    bundle.putSerializable("Music",music);
-                    fragmentManager.beginTransaction()
-                            .add(R.id.content_main, results)
-                            .commit();
                     return true;
                 case R.id.navigation_notifications:
                     iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
                     iMusicListPresenter.attachView(iMusicListView);
                     iMusicListPresenter.performMusicListDisplay();
-                    fragmentManager = getSupportFragmentManager();
-                    bundle.putSerializable("Music",music);
-                    fragmentManager.beginTransaction()
-                            .add(R.id.content_main, results)
-                            .commit();
                     return true;
             }
             return false;
@@ -88,7 +74,14 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         for(Result r: music.getResults()){
             Log.i("MusicLog", r.getTrackName());
         }
-        this.music = music;
+        Bundle args = new Bundle();
+        args.putParcelable("doctor_id",music);
+        Results results = new Results ();
+        results.setArguments(args);
+        fragmentManager.beginTransaction()
+                .add(R.id.content_main, results)
+                .addToBackStack(results.getClass().getName())
+                .commit();
     }
 
     @Override
