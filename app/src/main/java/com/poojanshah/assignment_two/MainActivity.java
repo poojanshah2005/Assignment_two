@@ -41,6 +41,16 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     Realm realm;
     RealmHelper realmHelper;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    String type;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -63,12 +73,9 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
             return false;
         }
 
-        private void topClassic() {
-            iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
-            displayResults();
-        }
 
-        private void displayResults() {
+
+        private void displayResults(String musicType) {
             iMusicListPresenter.attachView(iMusicListView);
             iMusicListPresenter.performMusicListDisplay();
 
@@ -82,22 +89,47 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
                                 Toast.makeText(MainActivity.this,"Network is Available",Toast.LENGTH_LONG).show();
                             } else{
                                 Toast.makeText(MainActivity.this,"Network is Not Available",Toast.LENGTH_LONG).show();
+                                Log.i("ClassTracdk","onFetchDataFailure");
+                                Bundle args = new Bundle();
+                                Music musicNew = new Music();
+                                ArrayList<Result> list = realmHelper.getCustomers(musicType);
+                                musicNew.setResults(list);
+                                musicNew.setResultCount(list.size());
+                                args.putParcelable("doctor_id",musicNew);
+                                Results results = new Results ();
+                                results.setArguments(args);
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.content_main,results)
+                                        .addToBackStack(results.getClass().getName())
+                                        .commit();
                             }
                         }
                     });
         }
 
         private void topRock() {
+            setType(getString(R.string.rock));
             iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
-            displayResults();
+            displayResults(getType());
         }
 
         private void topPop() {
+            setType(getString(R.string.pop));
             iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
-            displayResults();
+            displayResults(getType());
+        }
+
+        private void topClassic() {
+            setType(getString(R.string.classic));
+            iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
+            displayResults(getType());
         }
 
     };
+
+    public static void update() {
+        iMusicListPresenter.performMusicListDisplay();
+    }
 
     @Override
     public void onBackPressed() {
@@ -107,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setType(getString(R.string.classic));
         realm = Realm.getDefaultInstance();
         realmHelper = new RealmHelper(realm);
         this.iMusicListView = this;
@@ -118,9 +151,11 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataSuccess(Music music) {
+        Log.i("ClassTracdk","onFetchDataSuccess");
         for(Result r: music.getResults()){
             Log.i("MusicLog", r.getTrackName());
             realmHelper.saveData(r);
+            r.setPrimaryGenreName(getType());
         }
         Bundle args = new Bundle();
         args.putParcelable("doctor_id",music);
@@ -134,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataFailure(Throwable throwable) {
+        Log.i("ClassTracdk","onFetchDataFailure");
         Bundle args = new Bundle();
         Music musicNew = new Music();
         ArrayList<Result> list = realmHelper.getCustomers(getString(R.string.rock));
@@ -150,15 +186,13 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataCompleted() {
+        Log.i("ClassTracdk","onFetchDataCompleted");
 
     }
 
     @Override
     public void onFetchDataInProgress() {
+        Log.i("ClassTracdk","onFetchDataInProgress");
 
-    }
-
-    public static void update() {
-        iMusicListPresenter.performMusicListDisplay();
     }
 }
