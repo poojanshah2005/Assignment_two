@@ -90,9 +90,9 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataSuccess(Music music) {
-        for(Result r: music.getResults()){
-            Log.i("MusicLog", r.getTrackName());
-        }
+//        for(Result r: music.getResults()){
+//            Log.i("MusicLog", r.getTrackName());
+//        }
         Bundle args = new Bundle();
         args.putParcelable("doctor_id",music);
         Results results = new Results ();

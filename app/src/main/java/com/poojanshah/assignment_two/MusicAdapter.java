@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.poojanshah.assignment_two.model.Music;
@@ -30,8 +31,14 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String a = music.getResults().get(position).getTrackName();
-        holder.tvTitle.setText(a);
+        String trackName = music.getResults().get(position).getTrackName();
+        String collectionName = music.getResults().get(position).getCollectionName();
+        String ArtworkUl60 = music.getResults().get(position).getArtworkUrl60();
+        Double trackPrice = music.getResults().get(position).getTrackPrice();
+        holder.tvArtistName.setText(trackName);
+        holder.tvCollectionName.setText(collectionName);
+        holder.tvTrackName.setText(trackName);
+        holder.tvTrackPrice.setText(String.valueOf(trackPrice));
     }
 
     @Override
@@ -41,10 +48,15 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvTitle;
+        TextView tvTrackName, tvArtistName, tvTrackPrice, tvCollectionName;
+        ImageView imageView;
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvTitle = (TextView)itemView.findViewById(R.id.tvTitle);
+            tvArtistName = (TextView)itemView.findViewById(R.id.tvArtistName);
+            tvTrackPrice = (TextView)itemView.findViewById(R.id.tvTrackPrice);
+            tvTrackName = (TextView)itemView.findViewById(R.id.tvTrackName);
+            tvCollectionName = (TextView)itemView.findViewById(R.id.tvCollectionName);
+            imageView = (ImageView) itemView.findViewById(R.id.ivArtwork);
 
         }
     }
