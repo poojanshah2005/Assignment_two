@@ -12,6 +12,9 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
+/**
+ * model class for each music song in array  of type Music
+ */
 public class Result extends RealmObject implements Parcelable
 {
 

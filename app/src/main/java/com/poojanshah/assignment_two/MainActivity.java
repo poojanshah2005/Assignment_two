@@ -36,20 +36,21 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     android.support.v4.app.FragmentManager fragmentManager;
     Realm realm;
     RealmHelper realmHelper;
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-
     String type;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        /**
+         *
+         * @param item
+         * @return
+         */
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Results results = new Results();
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataFailure(Throwable throwable) {
-        Log.i("ClassTracdk","onFetchDataFailure");
+        Log.i("ClassTrack","onFetchDataFailure");
         Bundle args = new Bundle();
         Music musicNew = new Music();
         ArrayList<Result> list = realmHelper.getCustomers(getString(R.string.rock));
@@ -183,13 +184,13 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataCompleted() {
-        Log.i("ClassTracdk","onFetchDataCompleted");
+        Log.i("ClassTrack","onFetchDataCompleted");
 
     }
 
     @Override
     public void onFetchDataInProgress() {
-        Log.i("ClassTracdk","onFetchDataInProgress");
+        Log.i("ClassTrack","onFetchDataInProgress");
 
     }
 

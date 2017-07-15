@@ -25,9 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link Results#newInstance} factory method to
- * create an instance of this fragment.
+ * for displaying result back from api
  */
 public class Results extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -36,12 +34,15 @@ public class Results extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private Music music;
     private RecyclerView mRecyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
 
+    /**
+     * initiating the RecyclerView and the swipe to refresh feature
+     * @param view to bind ojects to the view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -72,6 +73,9 @@ public class Results extends Fragment {
 
     }
 
+    /**
+     * construtor is reaquired.
+     */
     public Results() {
         // Required empty public constructor
     }
@@ -94,15 +98,15 @@ public class Results extends Fragment {
         return fragment;
     }
 
+    /**
+     * for getting data from api and loading it up
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // retain this fragment
         setRetainInstance(true);
-            if (getArguments() != null) {
-                mParam1 = getArguments().getString(ARG_PARAM1);
-                mParam2 = getArguments().getString(ARG_PARAM2);
-            }
             Bundle b = getArguments();
             music = b.getParcelable("doctor_id");
             for (Result r : music.getResults()) {
@@ -111,6 +115,13 @@ public class Results extends Fragment {
         }
 
 
+    /**
+     * for inflating view/layout
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

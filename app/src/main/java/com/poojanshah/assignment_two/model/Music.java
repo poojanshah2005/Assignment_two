@@ -13,6 +13,9 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
+/**
+ * model class for getting back result from api
+ */
 public class Music implements Parcelable
 {
 
