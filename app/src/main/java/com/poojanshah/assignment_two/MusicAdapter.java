@@ -3,6 +3,7 @@ package com.poojanshah.assignment_two;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,11 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.poojanshah.assignment_two.model.Music;
+import com.poojanshah.assignment_two.model.Result;
 
 import java.io.File;
+import java.net.InetAddress;
+import java.util.ArrayList;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Poojan on 15/07/2017.
@@ -50,11 +60,16 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
         holder.resultCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 try {
-                    Uri myUri = Uri.parse(previewUrl);
-                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-                    intent.setDataAndType(myUri, "audio/*");
-                    context.startActivity(intent);
+                    if(isInternetAvailable()){
+                        Uri myUri = Uri.parse(previewUrl);
+                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                        intent.setDataAndType(myUri, "audio/*");
+                        context.startActivity(intent);
+                    } else {
+                        Toast.makeText(context,"You are not connected to the internet",Toast.LENGTH_LONG);
+                    }
                 }
                 catch (Exception exc){
                     Log.i("Error", exc.getMessage());
@@ -72,6 +87,17 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
             Log.i("Error", e.getMessage());
             Log.i("Error", String.valueOf(e.getCause()));
         }
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     @Override

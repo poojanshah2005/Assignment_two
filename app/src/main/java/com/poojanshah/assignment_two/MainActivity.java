@@ -2,6 +2,7 @@ package com.poojanshah.assignment_two;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.TransactionTooLargeException;
 import android.support.annotation.NonNull;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     @Override
     public void onBackPressed() {
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

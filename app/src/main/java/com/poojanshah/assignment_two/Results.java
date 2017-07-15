@@ -110,7 +110,7 @@ public class Results extends Fragment {
                 Log.i("MusicLog 63", r.getTrackName());
             }
         }
-    
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
