@@ -23,6 +23,8 @@ import com.poojanshah.assignment_two.Realm.RealmHelper;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
 
+import java.util.ArrayList;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -132,7 +134,18 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     @Override
     public void onFetchDataFailure(Throwable throwable) {
-
+        Bundle args = new Bundle();
+        Music musicNew = new Music();
+        ArrayList<Result> list = realmHelper.getCustomers(getString(R.string.rock));
+        musicNew.setResults(list);
+        musicNew.setResultCount(list.size());
+        args.putParcelable("doctor_id",musicNew);
+        Results results = new Results ();
+        results.setArguments(args);
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_main,results)
+                .addToBackStack(results.getClass().getName())
+                .commit();
     }
 
     @Override

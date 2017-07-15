@@ -5,6 +5,7 @@ import com.poojanshah.assignment_two.model.Result;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -27,12 +28,10 @@ public class RealmHelper {
         });
     }
 
-//    public ArrayList<Person> getCustomers(){
-//        ArrayList<Person> people = new ArrayList<>();
-//        RealmResults<Person> c = realm.where(Person.class).findAll();
-//        for(Person customerModel: c){
-//            people.add(customerModel);
-//        }
-//        return people;
-//    }
+    public ArrayList<Result> getCustomers(String type){
+        ArrayList<Result> output;
+        RealmResults<Result> result = realm.where(Result.class).equalTo("primaryGenreName",type).findAll();
+        output = new ArrayList<>(result);
+        return output;
+    }
 }
