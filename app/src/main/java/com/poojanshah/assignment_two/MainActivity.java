@@ -38,23 +38,35 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
             Bundle bundle = new Bundle();
             fragmentManager = getSupportFragmentManager();
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
-                    iMusicListPresenter.attachView(iMusicListView);
-                    iMusicListPresenter.performMusicListDisplay();
+                case R.id.classic:
+                    topClassic();
                     return true;
-                case R.id.navigation_dashboard:
-                    iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
-                    iMusicListPresenter.attachView(iMusicListView);
-                    iMusicListPresenter.performMusicListDisplay();
+                case R.id.rock:
+                    topRock();
                     return true;
-                case R.id.navigation_notifications:
-                    iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
-                    iMusicListPresenter.attachView(iMusicListView);
-                    iMusicListPresenter.performMusicListDisplay();
+                case R.id.pop:
+                    topPop();
                     return true;
             }
             return false;
+        }
+
+        private void topClassic() {
+            iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
+            iMusicListPresenter.attachView(iMusicListView);
+            iMusicListPresenter.performMusicListDisplay();
+        }
+
+        private void topRock() {
+            iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
+            iMusicListPresenter.attachView(iMusicListView);
+            iMusicListPresenter.performMusicListDisplay();
+        }
+
+        private void topPop() {
+            iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
+            iMusicListPresenter.attachView(iMusicListView);
+            iMusicListPresenter.performMusicListDisplay();
         }
 
     };
@@ -67,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         interactor_ = new InteractorImpl();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.classic);
     }
 
     @Override
@@ -79,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         Results results = new Results ();
         results.setArguments(args);
         fragmentManager.beginTransaction()
-                .add(R.id.content_main, results)
+                .replace(R.id.content_main, results)
                 .addToBackStack(results.getClass().getName())
                 .commit();
     }
