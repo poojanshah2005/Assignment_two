@@ -195,4 +195,10 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         Log.i("ClassTracdk","onFetchDataInProgress");
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 }
