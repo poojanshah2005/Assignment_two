@@ -3,6 +3,7 @@ package com.poojanshah.assignment_two;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.TransactionTooLargeException;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
             realmHelper.saveData(r);
         }
         Bundle args = new Bundle();
-        args.putParcelable("doctor_id",music);
+        args.putParcelable("doctor_id", music);
         Results results = new Results ();
         results.setArguments(args);
         fragmentManager.beginTransaction()

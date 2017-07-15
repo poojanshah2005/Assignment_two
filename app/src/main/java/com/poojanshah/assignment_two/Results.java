@@ -2,6 +2,7 @@ package com.poojanshah.assignment_two;
 
 
 import android.os.Bundle;
+import android.os.TransactionTooLargeException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -97,16 +98,19 @@ public class Results extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        // retain this fragment
+        setRetainInstance(true);
+            if (getArguments() != null) {
+                mParam1 = getArguments().getString(ARG_PARAM1);
+                mParam2 = getArguments().getString(ARG_PARAM2);
+            }
+            Bundle b = getArguments();
+            music = b.getParcelable("doctor_id");
+            for (Result r : music.getResults()) {
+                Log.i("MusicLog 63", r.getTrackName());
+            }
         }
-        Bundle b = getArguments();
-        music = b.getParcelable("doctor_id");
-        for(Result r: music.getResults()){
-            Log.i("MusicLog 63", r.getTrackName());
-        }
-    }
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
