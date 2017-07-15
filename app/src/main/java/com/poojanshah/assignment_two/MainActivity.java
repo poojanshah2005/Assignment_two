@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.poojanshah.assignment_two.MVP.IMusicListPresenter;
 import com.poojanshah.assignment_two.MVP.IMusicListView;
 import com.poojanshah.assignment_two.MVP.MusicListClassicPresenterImple;
@@ -19,6 +21,10 @@ import com.poojanshah.assignment_two.MVP.MusicListRockPresenterImple;
 import com.poojanshah.assignment_two.MVP.interactor.InteractorImpl;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements IMusicListView {
 
@@ -59,6 +65,20 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         private void displayResults() {
             iMusicListPresenter.attachView(iMusicListView);
             iMusicListPresenter.performMusicListDisplay();
+
+            ReactiveNetwork.observeInternetConnectivity()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Boolean>() {
+                        @Override public void accept(Boolean isConnectedToInternet) {
+                            // do something with isConnectedToInternet value
+                            if(isConnectedToInternet){
+                                Toast.makeText(MainActivity.this,"Network is Available",Toast.LENGTH_LONG).show();
+                            } else{
+                                Toast.makeText(MainActivity.this,"Network is Not Available",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
         }
 
         private void topRock() {
