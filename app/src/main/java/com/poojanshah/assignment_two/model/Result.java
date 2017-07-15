@@ -108,7 +108,12 @@ public class Result extends RealmObject implements Parcelable
     private String primaryGenreName;
     @SerializedName("isStreamable")
     @Expose
+
     private Boolean isStreamable;
+
+
+
+    private String genre;
     public final static Parcelable.Creator<Result> CREATOR = new Creator<Result>() {
 
 
@@ -404,6 +409,14 @@ public class Result extends RealmObject implements Parcelable
 
     public void setIsStreamable(Boolean isStreamable) {
         this.isStreamable = isStreamable;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public void writeToParcel(Parcel dest, int flags) {

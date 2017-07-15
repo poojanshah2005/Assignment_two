@@ -31,7 +31,7 @@ public class RealmHelper {
 
     public ArrayList<Result> getCustomers(String type){
         ArrayList<Result> output;
-        RealmResults<Result> result = realm.where(Result.class).equalTo("primaryGenreName",type).findAll();
+        RealmResults<Result> result = realm.where(Result.class).equalTo("genre",type).findAll();
         output = new ArrayList<>(result);
         return output;
     }
