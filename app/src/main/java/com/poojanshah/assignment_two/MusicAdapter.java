@@ -2,6 +2,7 @@ package com.poojanshah.assignment_two;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,16 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
         holder.tvCollectionName.setText(collectionName);
         holder.tvTrackName.setText(trackName);
         holder.tvTrackPrice.setText(String.valueOf(trackPrice));
-        Glide
-                .with(context)
-                .load(artworkUl60)
-                .into(holder.ivArtwork);
+        try {
+            Glide
+                    .with(context)
+                    .load(artworkUl60)
+                    .into(holder.ivArtwork);
+        }
+        catch(Exception e){
+            Log.i("Error", e.getMessage());
+            Log.i("Error", String.valueOf(e.getCause()));
+        }
     }
 
     @Override
