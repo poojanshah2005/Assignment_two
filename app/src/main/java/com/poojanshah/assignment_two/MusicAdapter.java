@@ -1,6 +1,9 @@
 package com.poojanshah.assignment_two;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.poojanshah.assignment_two.model.Music;
+
+import java.io.File;
 
 /**
  * Created by Poojan on 15/07/2017.
@@ -37,10 +42,22 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
         String collectionName = music.getResults().get(position).getCollectionName();
         String artworkUl60 = music.getResults().get(position).getArtworkUrl60();
         Double trackPrice = music.getResults().get(position).getTrackPrice();
+        String previewUrl = music.getResults().get(position).getPreviewUrl();
         holder.tvArtistName.setText(trackName);
         holder.tvCollectionName.setText(collectionName);
         holder.tvTrackName.setText(trackName);
         holder.tvTrackPrice.setText(String.valueOf(trackPrice));
+        holder.resultCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Uri myUri = Uri.parse(previewUrl);
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                intent.setDataAndType(myUri, "audio/*");
+                context.startActivity(intent);
+
+            }
+        });
         try {
             Glide
                     .with(context)
@@ -62,6 +79,7 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvTrackName, tvArtistName, tvTrackPrice, tvCollectionName;
         ImageView ivArtwork;
+        CardView resultCard;
         public MyViewHolder(View itemView) {
             super(itemView);
             tvArtistName = (TextView)itemView.findViewById(R.id.tvArtistName);
@@ -69,6 +87,7 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
             tvTrackName = (TextView)itemView.findViewById(R.id.tvTrackName);
             tvCollectionName = (TextView)itemView.findViewById(R.id.tvCollectionName);
             ivArtwork = (ImageView) itemView.findViewById(R.id.ivArtwork);
+            resultCard = (CardView) itemView.findViewById(R.id.resultCard);
 
         }
     }
