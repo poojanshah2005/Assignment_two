@@ -10,6 +10,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Result extends RealmObject implements Parcelable
 {
@@ -26,6 +27,7 @@ public class Result extends RealmObject implements Parcelable
     @SerializedName("collectionId")
     @Expose
     private Integer collectionId;
+    @PrimaryKey
     @SerializedName("trackId")
     @Expose
     private Integer trackId;
