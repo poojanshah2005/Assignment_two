@@ -50,12 +50,16 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
         holder.resultCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Uri myUri = Uri.parse(previewUrl);
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-                intent.setDataAndType(myUri, "audio/*");
-                context.startActivity(intent);
-
+                try {
+                    Uri myUri = Uri.parse(previewUrl);
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                    intent.setDataAndType(myUri, "audio/*");
+                    context.startActivity(intent);
+                }
+                catch (Exception exc){
+                    Log.i("Error", exc.getMessage());
+                    Log.i("Error", String.valueOf(exc.getCause()));
+                }
             }
         });
         try {
