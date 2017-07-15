@@ -19,12 +19,14 @@ import com.poojanshah.assignment_two.MVP.MusicListPopPresenterImple;
 import com.poojanshah.assignment_two.MVP.MusicListPresenterImple;
 import com.poojanshah.assignment_two.MVP.MusicListRockPresenterImple;
 import com.poojanshah.assignment_two.MVP.interactor.InteractorImpl;
+import com.poojanshah.assignment_two.Realm.RealmHelper;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements IMusicListView {
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     IMusicListView iMusicListView;
     android.support.v4.app.FragmentManager fragmentManager;
     Music music;
+    Realm realm;
+    RealmHelper realmHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -101,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        realm = Realm.getDefaultInstance();
+        realmHelper = new RealmHelper(realm);
         this.iMusicListView = this;
         interactor_ = new InteractorImpl();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     public void onFetchDataSuccess(Music music) {
         for(Result r: music.getResults()){
             Log.i("MusicLog", r.getTrackName());
+            realmHelper.saveData(r);
         }
         Bundle args = new Bundle();
         args.putParcelable("doctor_id",music);

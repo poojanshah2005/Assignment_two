@@ -9,7 +9,9 @@ import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result implements Parcelable
+import io.realm.RealmObject;
+
+public class Result extends RealmObject implements Parcelable
 {
 
     @SerializedName("wrapperType")
