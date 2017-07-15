@@ -154,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         Log.i("ClassTracdk","onFetchDataSuccess");
         for(Result r: music.getResults()){
             Log.i("MusicLog", r.getTrackName());
-            realmHelper.saveData(r);
             r.setPrimaryGenreName(getType());
+            realmHelper.saveData(r);
         }
         Bundle args = new Bundle();
         args.putParcelable("doctor_id",music);
