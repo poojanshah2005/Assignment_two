@@ -53,20 +53,22 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
         private void topClassic() {
             iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
+            displayResults();
+        }
+
+        private void displayResults() {
             iMusicListPresenter.attachView(iMusicListView);
             iMusicListPresenter.performMusicListDisplay();
         }
 
         private void topRock() {
             iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
-            iMusicListPresenter.attachView(iMusicListView);
-            iMusicListPresenter.performMusicListDisplay();
+            displayResults();
         }
 
         private void topPop() {
             iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
-            iMusicListPresenter.attachView(iMusicListView);
-            iMusicListPresenter.performMusicListDisplay();
+            displayResults();
         }
 
     };
