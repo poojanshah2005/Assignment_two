@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.poojanshah.assignment_two.model.Music;
 
 /**
@@ -33,12 +34,16 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         String trackName = music.getResults().get(position).getTrackName();
         String collectionName = music.getResults().get(position).getCollectionName();
-        String ArtworkUl60 = music.getResults().get(position).getArtworkUrl60();
+        String artworkUl60 = music.getResults().get(position).getArtworkUrl60();
         Double trackPrice = music.getResults().get(position).getTrackPrice();
         holder.tvArtistName.setText(trackName);
         holder.tvCollectionName.setText(collectionName);
         holder.tvTrackName.setText(trackName);
         holder.tvTrackPrice.setText(String.valueOf(trackPrice));
+        Glide
+                .with(context)
+                .load(artworkUl60)
+                .into(holder.ivArtwork);
     }
 
     @Override
@@ -49,14 +54,14 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvTrackName, tvArtistName, tvTrackPrice, tvCollectionName;
-        ImageView imageView;
+        ImageView ivArtwork;
         public MyViewHolder(View itemView) {
             super(itemView);
             tvArtistName = (TextView)itemView.findViewById(R.id.tvArtistName);
             tvTrackPrice = (TextView)itemView.findViewById(R.id.tvTrackPrice);
             tvTrackName = (TextView)itemView.findViewById(R.id.tvTrackName);
             tvCollectionName = (TextView)itemView.findViewById(R.id.tvCollectionName);
-            imageView = (ImageView) itemView.findViewById(R.id.ivArtwork);
+            ivArtwork = (ImageView) itemView.findViewById(R.id.ivArtwork);
 
         }
     }
