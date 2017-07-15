@@ -23,7 +23,7 @@ import com.poojanshah.assignment_two.model.Result;
 public class MainActivity extends AppCompatActivity implements IMusicListView {
 
 
-    IMusicListPresenter iMusicListPresenter;
+    static IMusicListPresenter iMusicListPresenter;
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
     android.support.v4.app.FragmentManager fragmentManager;
@@ -114,5 +114,9 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     @Override
     public void onFetchDataInProgress() {
 
+    }
+
+    public static void update() {
+        iMusicListPresenter.performMusicListDisplay();
     }
 }

@@ -4,6 +4,7 @@ package com.poojanshah.assignment_two;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class Results extends Fragment {
     private String mParam2;
     private Music music;
     private RecyclerView mRecyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -38,6 +40,13 @@ public class Results extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleView);
         mRecyclerView.setAdapter(new MusicAdapter(music,getContext()));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MainActivity.update();
+            }
+        });
 
     }
 
