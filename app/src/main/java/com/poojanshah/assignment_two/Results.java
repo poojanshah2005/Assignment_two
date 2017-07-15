@@ -11,9 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
+
+import java.util.ArrayList;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -44,9 +52,23 @@ public class Results extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                MainActivity.update();
+
+                ReactiveNetwork.observeInternetConnectivity()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Boolean>() {
+                            @Override public void accept(Boolean isConnectedToInternet) {
+                                // do something with isConnectedToInternet value
+                                if(isConnectedToInternet){
+                                    MainActivity.update();
+                                } else{
+                                    swipeRefreshLayout.setRefreshing(false);
+                                }
+                            }
+                        });
             }
         });
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 
