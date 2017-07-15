@@ -1,7 +1,7 @@
 package com.poojanshah.assignment_two.MVP.interactor;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.poojanshah.assignment_two.RequestInterface;
+import com.poojanshah.assignment_two.Controller.RequestInterface;
 import com.poojanshah.assignment_two.model.Music;
 
 import io.reactivex.Observable;
@@ -10,7 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.poojanshah.assignment_two.Consts.BASE_URL;
+import static com.poojanshah.assignment_two.Constants.Consts.BASE_URL;
 
 /**
  * Created by shahp on 14/07/2017.

@@ -1,4 +1,4 @@
-package com.poojanshah.assignment_two;
+package com.poojanshah.assignment_two.Constants;
 
 /**
  * Created by shahp on 14/07/2017.

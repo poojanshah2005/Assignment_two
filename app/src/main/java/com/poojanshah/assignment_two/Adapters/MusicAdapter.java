@@ -1,9 +1,8 @@
-package com.poojanshah.assignment_two;
+package com.poojanshah.assignment_two.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,26 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.poojanshah.assignment_two.R;
 import com.poojanshah.assignment_two.model.Music;
-import com.poojanshah.assignment_two.model.Result;
-
-import java.io.File;
-import java.net.InetAddress;
-import java.util.ArrayList;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Poojan on 15/07/2017.
  */
 
-class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
+public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
     Music music;
     Context context;
 

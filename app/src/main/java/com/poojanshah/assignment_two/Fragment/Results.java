@@ -1,8 +1,7 @@
-package com.poojanshah.assignment_two;
+package com.poojanshah.assignment_two.Fragment;
 
 
 import android.os.Bundle;
-import android.os.TransactionTooLargeException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,13 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.poojanshah.assignment_two.Adapters.MusicAdapter;
+import com.poojanshah.assignment_two.MainActivity;
+import com.poojanshah.assignment_two.R;
 import com.poojanshah.assignment_two.model.Music;
 import com.poojanshah.assignment_two.model.Result;
-
-import java.util.ArrayList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

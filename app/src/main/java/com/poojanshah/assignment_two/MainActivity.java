@@ -1,19 +1,15 @@
 package com.poojanshah.assignment_two;
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.TransactionTooLargeException;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.poojanshah.assignment_two.Fragment.Results;
 import com.poojanshah.assignment_two.MVP.IMusicListPresenter;
 import com.poojanshah.assignment_two.MVP.IMusicListView;
 import com.poojanshah.assignment_two.MVP.MusicListClassicPresenterImple;
