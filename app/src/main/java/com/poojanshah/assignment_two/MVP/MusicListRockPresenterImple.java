@@ -14,6 +14,9 @@ import io.reactivex.schedulers.Schedulers;
  * Created by shahp on 14/07/2017.
  */
 
+/**
+ * Implementation of Presenter Contract for Rock Music
+ */
 public class MusicListRockPresenterImple implements IMusicListPresenter {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
@@ -32,6 +35,9 @@ public class MusicListRockPresenterImple implements IMusicListPresenter {
 
     }
 
+    /**
+     * for displaying results from API, and passing them on the correct view contact
+     */
     @Override
     public void performMusicListDisplay() {
         ReactiveNetwork.observeInternetConnectivity()
@@ -52,10 +58,18 @@ public class MusicListRockPresenterImple implements IMusicListPresenter {
                         }
                     }
 
+                    /**
+                     * passing Music objects to correct View contract
+                     * @param music
+                     */
                     private void onSuccess(Music music) {
                         iMusicListView.onFetchDataSuccess(music);
                     }
 
+                    /**
+                     * for when and error is thrown by api
+                     * @param throwable
+                     */
                     private void OnError(Throwable throwable) {
                         Log.i("throwable.getMessage()", throwable.getMessage());
                         Log.i("throwable.getCause()", String.valueOf(throwable.getCause()));

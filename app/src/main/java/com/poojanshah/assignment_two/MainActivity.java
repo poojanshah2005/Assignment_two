@@ -30,12 +30,22 @@ import io.realm.Realm;
 public class MainActivity extends AppCompatActivity implements IMusicListView {
 
 
+    /**
+     * contract for presenetation of api data
+     */
     static IMusicListPresenter iMusicListPresenter;
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
     android.support.v4.app.FragmentManager fragmentManager;
+    /**
+     * Realim init
+     */
     Realm realm;
     RealmHelper realmHelper;
+
+    /**
+     * Saving types of api list/values
+     */
     public String getType() {
         return type;
     }
@@ -43,11 +53,20 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         this.type = type;
     }
     String type;
+
+    /**
+     * is user  logged in
+     */
+    private boolean isLoggedIn;
+
+    /**
+     * Naviagation bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         /**
-         *
+         * for selecting menu item
          * @param item
          * @return
          */
@@ -71,7 +90,10 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         }
 
 
-
+        /**
+         * for displaying result form api
+         * @param musicType
+         */
         private void displayResults(String musicType) {
             iMusicListPresenter.attachView(iMusicListView);
             iMusicListPresenter.performMusicListDisplay();
@@ -104,18 +126,27 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
                     });
         }
 
+        /**
+         * Display items for when Genre is Rock
+         */
         private void topRock() {
             setType(getString(R.string.rock));
             iMusicListPresenter = new MusicListRockPresenterImple(interactor_);
             displayResults(getType());
         }
 
+        /**
+         * Display items for when Genre is Pop
+         */
         private void topPop() {
             setType(getString(R.string.pop));
             iMusicListPresenter = new MusicListPopPresenterImple(interactor_);
             displayResults(getType());
         }
 
+        /**
+         * Display items for when Genre is Classic
+         */
         private void topClassic() {
             setType(getString(R.string.classic));
             iMusicListPresenter = new MusicListClassicPresenterImple(interactor_);
@@ -124,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     };
 
+    /**
+     * for swipe to update
+     */
     public static void update() {
         iMusicListPresenter.performMusicListDisplay();
     }
@@ -132,7 +166,10 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     public void onBackPressed() {
     }
 
-
+    /**
+     * for the creationg of the main Activity screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +184,10 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         navigation.setSelectedItemId(R.id.classic);
     }
 
+    /**
+     * fetch data based on the the type music genre
+     * @param music
+     */
     @Override
     public void onFetchDataSuccess(Music music) {
         Log.i("ClassTracdk","onFetchDataSuccess");
@@ -165,6 +206,10 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
                 .commit();
     }
 
+    /**
+     * loading data from realm when there is no internet connection.
+     * @param throwable
+     */
     @Override
     public void onFetchDataFailure(Throwable throwable) {
         Log.i("ClassTrack","onFetchDataFailure");
@@ -194,6 +239,9 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     }
 
+    /**
+     * Closing Realm when the application is close, to prevent memory leaks
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
