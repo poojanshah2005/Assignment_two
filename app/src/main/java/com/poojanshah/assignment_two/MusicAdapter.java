@@ -62,14 +62,11 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
             public void onClick(View view) {
 
                 try {
-                    if(isInternetAvailable()){
                         Uri myUri = Uri.parse(previewUrl);
                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
                         intent.setDataAndType(myUri, "audio/*");
                         context.startActivity(intent);
-                    } else {
-                        Toast.makeText(context,"You are not connected to the internet",Toast.LENGTH_LONG);
-                    }
+
                 }
                 catch (Exception exc){
                     Log.i("Error", exc.getMessage());
@@ -87,17 +84,6 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
             Log.i("Error", e.getMessage());
             Log.i("Error", String.valueOf(e.getCause()));
         }
-    }
-
-    public boolean isInternetAvailable() {
-        try {
-            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
-            return !ipAddr.equals("");
-
-        } catch (Exception e) {
-            return false;
-        }
-
     }
 
     @Override

@@ -18,11 +18,6 @@ public class MusicListClassicPresenterImple implements IMusicListPresenter {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
 
-//    public MusicListPresenterImple(IMusicListView iMusicListView) {
-//        this.iMusicListView = iMusicListView;
-//    }
-
-
     public MusicListClassicPresenterImple(InteractorImpl interactor_) {
         this.interactor_ = interactor_;
     }

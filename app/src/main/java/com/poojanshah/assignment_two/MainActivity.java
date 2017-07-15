@@ -18,7 +18,6 @@ import com.poojanshah.assignment_two.MVP.IMusicListPresenter;
 import com.poojanshah.assignment_two.MVP.IMusicListView;
 import com.poojanshah.assignment_two.MVP.MusicListClassicPresenterImple;
 import com.poojanshah.assignment_two.MVP.MusicListPopPresenterImple;
-import com.poojanshah.assignment_two.MVP.MusicListPresenterImple;
 import com.poojanshah.assignment_two.MVP.MusicListRockPresenterImple;
 import com.poojanshah.assignment_two.MVP.interactor.InteractorImpl;
 import com.poojanshah.assignment_two.Realm.RealmHelper;

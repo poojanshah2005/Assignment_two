@@ -18,11 +18,6 @@ public class MusicListPopPresenterImple implements IMusicListPresenter {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
 
-//    public MusicListPresenterImple(IMusicListView iMusicListView) {
-//        this.iMusicListView = iMusicListView;
-//    }
-
-
     public MusicListPopPresenterImple(InteractorImpl interactor_) {
         this.interactor_ = interactor_;
     }
