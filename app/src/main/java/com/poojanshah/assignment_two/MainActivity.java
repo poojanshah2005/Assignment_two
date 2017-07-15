@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     InteractorImpl interactor_;
     IMusicListView iMusicListView;
     android.support.v4.app.FragmentManager fragmentManager;
-    Music music;
     Realm realm;
     RealmHelper realmHelper;
 
