@@ -23,7 +23,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp" />
+        android:layout_marginStart="37dp"
+        android:text="Password:" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -55,11 +56,11 @@
         android:id="@+id/btnLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:text="Log In"
+        android:layout_below="@+id/etPassword"
+        android:layout_alignRight="@+id/etPassword"
         android:layout_alignEnd="@+id/etPassword"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_alignRight="@+id/etPassword"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_below="@+id/etPassword"
-        android:layout_marginTop="70dp"
-        android:text="Button" />
+        android:layout_alignStart="@+id/textView2" />
 </RelativeLayout>

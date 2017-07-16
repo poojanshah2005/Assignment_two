@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
                     .subscribe(new Consumer<Boolean>() {
                         @Override public void accept(Boolean isConnectedToInternet) {
                             // do something with isConnectedToInternet value
-                            if(isConnectedToInternet){
-                            } else{
+                            if(!isConnectedToInternet){
                                 Toast.makeText(MainActivity.this,"Network is Not Available",Toast.LENGTH_LONG).show();
                                 Log.i("ClassTracdk","onFetchDataFailure");
                                 Bundle args = new Bundle();
