@@ -29,7 +29,7 @@ public class RealmHelper {
         });
     }
 
-    public ArrayList<Result> getCustomers(String type){
+    public ArrayList<Result> getMusic(String type){
         ArrayList<Result> output;
         RealmResults<Result> result = realm.where(Result.class).equalTo("genre",type).findAll();
         output = new ArrayList<>(result);

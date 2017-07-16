@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.poojanshah.assignment_two.Fragment.LogIn;
 import com.poojanshah.assignment_two.Fragment.Results;
 import com.poojanshah.assignment_two.MVP.IMusicListPresenter;
 import com.poojanshah.assignment_two.MVP.IMusicListView;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
     /**
      * is user  logged in
      */
-    private boolean isLoggedIn;
+    private static boolean LoggedInStatus;
 
     /**
      * Naviagation bar
@@ -75,16 +76,20 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
             Results results = new Results();
             Bundle bundle = new Bundle();
             fragmentManager = getSupportFragmentManager();
-            switch (item.getItemId()) {
-                case R.id.classic:
-                    topClassic();
-                    return true;
-                case R.id.rock:
-                    topRock();
-                    return true;
-                case R.id.pop:
-                    topPop();
-                    return true;
+            if(isLoggedIn()) {
+                switch (item.getItemId()) {
+                    case R.id.classic:
+                        topClassic();
+                        return true;
+                    case R.id.rock:
+                        topRock();
+                        return true;
+                    case R.id.pop:
+                        topPop();
+                        return true;
+                }
+            } else{
+                Toast.makeText(MainActivity.this,"You must Log in to use",Toast.LENGTH_LONG).show();
             }
             return false;
         }
@@ -105,13 +110,12 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
                         @Override public void accept(Boolean isConnectedToInternet) {
                             // do something with isConnectedToInternet value
                             if(isConnectedToInternet){
-                                Toast.makeText(MainActivity.this,"Network is Available",Toast.LENGTH_LONG).show();
                             } else{
                                 Toast.makeText(MainActivity.this,"Network is Not Available",Toast.LENGTH_LONG).show();
                                 Log.i("ClassTracdk","onFetchDataFailure");
                                 Bundle args = new Bundle();
                                 Music musicNew = new Music();
-                                ArrayList<Result> list = realmHelper.getCustomers(musicType);
+                                ArrayList<Result> list = realmHelper.getMusic(musicType);
                                 musicNew.setResults(list);
                                 musicNew.setResultCount(list.size());
                                 args.putParcelable("doctor_id",musicNew);
@@ -182,6 +186,11 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.classic);
+        LogIn logIn = new LogIn ();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_main, logIn)
+                .addToBackStack(logIn.getClass().getName())
+                .commit();
     }
 
     /**
@@ -215,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         Log.i("ClassTrack","onFetchDataFailure");
         Bundle args = new Bundle();
         Music musicNew = new Music();
-        ArrayList<Result> list = realmHelper.getCustomers(getString(R.string.rock));
+        ArrayList<Result> list = realmHelper.getMusic(getString(R.string.rock));
         musicNew.setResults(list);
         musicNew.setResultCount(list.size());
         args.putParcelable("doctor_id",musicNew);
@@ -247,4 +256,14 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
         super.onDestroy();
         realm.close();
     }
+
+    public static void logIn() {
+        LoggedInStatus = true;
+    }
+
+    private static boolean isLoggedIn() {
+        return LoggedInStatus;
+    }
+
+
 }
