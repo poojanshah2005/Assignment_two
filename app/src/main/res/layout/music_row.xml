@@ -53,7 +53,8 @@
                 android:layout_below="@+id/tvCollectionName"
                 android:layout_toEndOf="@+id/ivArtwork"
                 android:layout_toRightOf="@+id/ivArtwork"
-                android:paddingLeft="15dp" />
+                android:paddingLeft="15dp"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvTrackPrice"

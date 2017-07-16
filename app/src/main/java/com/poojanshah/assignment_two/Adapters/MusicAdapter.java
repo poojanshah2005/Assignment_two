@@ -40,11 +40,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         String trackName = music.getResults().get(position).getTrackName();
+        String artistName = music.getResults().get(position).getArtistName();
         String collectionName = music.getResults().get(position).getCollectionName();
         String artworkUl60 = music.getResults().get(position).getArtworkUrl60();
         Double trackPrice = music.getResults().get(position).getTrackPrice();
         String previewUrl = music.getResults().get(position).getPreviewUrl();
-        holder.tvArtistName.setText(trackName);
+        holder.tvArtistName.setText(artistName);
         holder.tvCollectionName.setText(collectionName);
         holder.tvTrackName.setText(trackName);
         holder.tvTrackPrice.setText(String.valueOf(trackPrice));
