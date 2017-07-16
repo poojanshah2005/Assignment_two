@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.poojanshah.assignment_two.R;
 import com.poojanshah.assignment_two.model.Music;
 import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -71,7 +72,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
 //                    .into(holder.ivArtwork);
             Picasso
                     .with(context)
-                    .load(artworkUl60)
+                    .load(artworkUl60).networkPolicy(NetworkPolicy.OFFLINE)
                     .into(holder.ivArtwork);
         }
         catch(Exception e){
