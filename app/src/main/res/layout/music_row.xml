@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tvTrackName"
-                android:layout_width="220dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/ivArtwork"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/tvCollectionName"
-                android:layout_width="220dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTrackName"
                 android:layout_toRightOf="@+id/ivArtwork"
@@ -48,7 +48,7 @@
 
             <TextView
                 android:id="@+id/tvArtistName"
-                android:layout_width="220dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvCollectionName"
                 android:layout_toEndOf="@+id/ivArtwork"
@@ -63,8 +63,7 @@
                 android:layout_alignBaseline="@+id/tvCollectionName"
                 android:layout_alignBottom="@+id/tvCollectionName"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/tvTrackName" />
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
