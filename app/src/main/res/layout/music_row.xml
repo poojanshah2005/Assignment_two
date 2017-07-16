@@ -23,48 +23,47 @@
             android:layout_height="match_parent">
 
 
-
-        <ImageView
-            android:id="@+id/ivArtwork"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@android:color/darker_gray" />
+            <ImageView
+                android:id="@+id/ivArtwork"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:srcCompat="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tvTrackName"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/ivArtwork"
                 android:layout_toEndOf="@+id/ivArtwork"
-                android:paddingLeft="15dp"/>
+                android:layout_toRightOf="@+id/ivArtwork"
+                android:paddingLeft="15dp" />
 
             <TextView
-            android:id="@+id/tvCollectionName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/tvCollectionName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTrackName"
                 android:layout_toRightOf="@+id/ivArtwork"
+                android:paddingLeft="15dp" />
+
+            <TextView
+                android:id="@+id/tvArtistName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvCollectionName"
                 android:layout_toEndOf="@+id/ivArtwork"
-                android:paddingLeft="15dp"/>
+                android:layout_toRightOf="@+id/ivArtwork"
+                android:paddingLeft="15dp" />
 
-        <TextView
-            android:id="@+id/tvArtistName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCollectionName"
-            android:layout_toRightOf="@+id/ivArtwork"
-            android:layout_toEndOf="@+id/ivArtwork"
-            android:paddingLeft="15dp"/>
-
-        <TextView
-            android:id="@+id/tvTrackPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tvCollectionName"
-            android:layout_alignBottom="@+id/tvCollectionName"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/tvTrackPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvCollectionName"
+                android:layout_alignBottom="@+id/tvCollectionName"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/tvTrackName" />
 
         </RelativeLayout>
 
