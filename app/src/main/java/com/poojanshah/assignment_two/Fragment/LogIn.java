@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.poojanshah.assignment_two.MainActivity;
 import com.poojanshah.assignment_two.R;
+import com.poojanshah.assignment_two.Service.DummyUserSerivce;
+import com.poojanshah.assignment_two.Service.IUserService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,15 +22,23 @@ import com.poojanshah.assignment_two.R;
  * create an instance of this fragment.
  */
 public class LogIn extends Fragment {
+    IUserService iUserService;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnLogIn = (Button) view.findViewById(R.id.btnLogIn);
+        EditText email = (EditText) view.findViewById(R.id.etEmail);
+        EditText password = (EditText) view.findViewById(R.id.etPassword);
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.logIn();
-                Toast.makeText(getContext(),"You have logged in Successfully",Toast.LENGTH_LONG);
+                if(iUserService.logIn(email.getText().toString(),password.getText().toString())){
+                    MainActivity.logIn();
+                    Toast.makeText(getContext(),"You have logged in Successfully",Toast.LENGTH_LONG);
+                } else {
+                    Toast.makeText(getContext(),"You have Not logged in Successfully",Toast.LENGTH_LONG);
+                }
+
             }
         });
     }
@@ -42,7 +53,7 @@ public class LogIn extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LogIn.
+     * @return A new instance of fragment Login.
      */
     // TODO: Rename and change types and number of parameters
     public static LogIn newInstance(String param1, String param2) {
@@ -55,6 +66,7 @@ public class LogIn extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        iUserService = new DummyUserSerivce();
 //        if (getArguments() != null) {
 //        }
     }
