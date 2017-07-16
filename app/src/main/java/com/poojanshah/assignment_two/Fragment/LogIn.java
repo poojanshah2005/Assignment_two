@@ -46,10 +46,12 @@ public class LogIn extends Fragment {
         TvMessage = (TextView) view.findViewById(R.id.tvMessage);
         TvMessage.setVisibility(View.INVISIBLE);
 
+        /**
+         * Email Validation, when typeing, setting background red if invalid or green if valid
+         */
         email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                Log.i("beforeTextChanged",email.getText().toString() );
                 if(!isValidEmail(email.getText().toString())) {
                     email.setBackgroundColor(Color.RED);
                 } else{
@@ -59,8 +61,7 @@ public class LogIn extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                Log.i("onTextChanged",email.getText().toString() );
-                if(!isValidEmail(email.getText().toString())) {
+               if(!isValidEmail(email.getText().toString())) {
                     email.setBackgroundColor(Color.RED);
                 } else{
                     email.setBackgroundColor(Color.GREEN);
