@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.poojanshah.assignment_two.MainActivity;
@@ -23,18 +24,38 @@ import com.poojanshah.assignment_two.Service.IUserService;
  */
 public class LogIn extends Fragment {
     IUserService iUserService;
+    Button btnLogIn;
+    EditText email;
+    EditText password;
+    TextView tvEmail;
+    TextView tvPassword;
+    TextView TvMessage;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button btnLogIn = (Button) view.findViewById(R.id.btnLogIn);
-        EditText email = (EditText) view.findViewById(R.id.etEmail);
-        EditText password = (EditText) view.findViewById(R.id.etPassword);
+        btnLogIn = (Button) view.findViewById(R.id.btnLogIn);
+        email = (EditText) view.findViewById(R.id.etEmail);
+        password = (EditText) view.findViewById(R.id.etPassword);
+        tvEmail = (TextView) view.findViewById(R.id.tvEmail);
+        tvPassword = (TextView) view.findViewById(R.id.tvPassword);
+        TvMessage = (TextView) view.findViewById(R.id.tvMessage);
+        TvMessage.setVisibility(View.INVISIBLE);
+
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(iUserService.logIn(email.getText().toString(),password.getText().toString())){
                     MainActivity.logIn();
                     Toast.makeText(getContext(),"You have logged in Successfully",Toast.LENGTH_LONG);
+                    btnLogIn.setVisibility(View.INVISIBLE);
+                    email.setVisibility(View.INVISIBLE);
+                    password.setVisibility(View.INVISIBLE);
+                    tvEmail.setVisibility(View.INVISIBLE);
+                    tvPassword.setVisibility(View.INVISIBLE);
+
+
+                    TvMessage.setText("You have logged in Successfully");
+                    TvMessage.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(getContext(),"You have Not logged in Successfully",Toast.LENGTH_LONG);
                 }

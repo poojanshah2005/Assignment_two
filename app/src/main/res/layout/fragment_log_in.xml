@@ -5,19 +5,19 @@
     tools:context="com.poojanshah.assignment_two.Fragment.LogIn">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:text="Email:"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignLeft="@+id/tvPassword"
+        android:layout_alignStart="@+id/tvPassword"
+        android:layout_alignRight="@+id/tvPassword"
+        android:layout_alignEnd="@+id/tvPassword" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/etPassword"
@@ -35,10 +35,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Email Address"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
+        android:layout_alignBaseline="@+id/tvEmail"
+        android:layout_alignBottom="@+id/tvEmail"
+        android:layout_toRightOf="@+id/tvPassword"
+        android:layout_toEndOf="@+id/tvPassword"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp" />
 
@@ -63,6 +63,20 @@
         android:layout_below="@+id/etPassword"
         android:layout_alignRight="@+id/etPassword"
         android:layout_alignEnd="@+id/etPassword"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_alignLeft="@+id/tvPassword"
+        android:layout_alignStart="@+id/tvPassword" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etPassword"
+        android:layout_alignLeft="@+id/tvEmail"
+        android:layout_alignRight="@+id/etPassword"
+        android:layout_alignStart="@+id/tvEmail"
+        android:layout_below="@+id/etEmail"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorGreen"
+        android:textSize="24dp" />
 </RelativeLayout>
