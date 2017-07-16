@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.poojanshah.assignment_two.R;
 import com.poojanshah.assignment_two.model.Music;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Poojan on 15/07/2017.
@@ -64,7 +65,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
             }
         });
         try {
-            Glide
+//            Glide
+//                    .with(context)
+//                    .load(artworkUl60)
+//                    .into(holder.ivArtwork);
+            Picasso
                     .with(context)
                     .load(artworkUl60)
                     .into(holder.ivArtwork);
