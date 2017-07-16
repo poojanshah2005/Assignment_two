@@ -73,7 +73,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
 //                    .into(holder.ivArtwork);
             Picasso
                     .with(context)
-                    .load(artworkUl60).networkPolicy(NetworkPolicy.OFFLINE)
+                    .load(artworkUl60)
                     .into(holder.ivArtwork);
         }
         catch(Exception e){
