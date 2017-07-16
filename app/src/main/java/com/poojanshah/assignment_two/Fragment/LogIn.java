@@ -1,10 +1,13 @@
 package com.poojanshah.assignment_two.Fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +45,39 @@ public class LogIn extends Fragment {
         tvPassword = (TextView) view.findViewById(R.id.tvPassword);
         TvMessage = (TextView) view.findViewById(R.id.tvMessage);
         TvMessage.setVisibility(View.INVISIBLE);
+
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                Log.i("beforeTextChanged",email.getText().toString() );
+                if(!isValidEmail(email.getText().toString())) {
+                    email.setBackgroundColor(Color.RED);
+                } else{
+                    email.setBackgroundColor(Color.GREEN);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                Log.i("onTextChanged",email.getText().toString() );
+                if(!isValidEmail(email.getText().toString())) {
+                    email.setBackgroundColor(Color.RED);
+                } else{
+                    email.setBackgroundColor(Color.GREEN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.i("afterTextChanged",email.getText().toString() );
+                if(!isValidEmail(email.getText().toString())) {
+                    Toast.makeText(getContext(), "Invalid Email Address", Toast.LENGTH_SHORT);
+                    email.setBackgroundColor(Color.RED);
+                } else{
+                    email.setBackgroundColor(Color.GREEN);
+                }
+            }
+        });
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
