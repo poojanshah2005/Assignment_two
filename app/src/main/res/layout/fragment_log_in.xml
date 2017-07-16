@@ -8,11 +8,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_marginTop="128dp"
+        android:text="Email:"
         android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="104dp"
-        android:text="Email:" />
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
@@ -32,13 +34,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
+        android:hint="Email Address"
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:hint="Email Address"/>
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp" />
 
     <EditText
         android:id="@+id/etPassword"
