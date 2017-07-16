@@ -4,6 +4,8 @@ package com.poojanshah.assignment_two.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,20 +46,28 @@ public class LogIn extends Fragment {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(iUserService.logIn(email.getText().toString(),password.getText().toString())){
-                    MainActivity.logIn();
-                    Toast.makeText(getContext(),"You have logged in Successfully",Toast.LENGTH_LONG);
-                    btnLogIn.setVisibility(View.INVISIBLE);
-                    email.setVisibility(View.INVISIBLE);
-                    password.setVisibility(View.INVISIBLE);
-                    tvEmail.setVisibility(View.INVISIBLE);
-                    tvPassword.setVisibility(View.INVISIBLE);
+                Log.i("!isValidEmail(email.getText().toString())", String.valueOf(isValidEmail(email.getText().toString())));
+                if(isValidEmail(email.getText().toString())) {
+                    Toast.makeText(getContext(), "Invalid Email Address", Toast.LENGTH_SHORT);
+                }
+                if(isValidEmail(email.getText().toString())) {
+                    if (iUserService.logIn(email.getText().toString(), password.getText().toString())) {
+                        MainActivity.logIn();
+                        Toast.makeText(getContext(), "You have logged in Successfully", Toast.LENGTH_SHORT);
+                        btnLogIn.setVisibility(View.INVISIBLE);
+                        email.setVisibility(View.INVISIBLE);
+                        password.setVisibility(View.INVISIBLE);
+                        tvEmail.setVisibility(View.INVISIBLE);
+                        tvPassword.setVisibility(View.INVISIBLE);
 
 
-                    TvMessage.setText("You have logged in Successfully");
-                    TvMessage.setVisibility(View.VISIBLE);
+                        TvMessage.setText("You have logged in Successfully");
+                        TvMessage.setVisibility(View.VISIBLE);
+                    } else {
+                        Toast.makeText(getContext(), "You have Not logged in Successfully", Toast.LENGTH_SHORT);
+                    }
                 } else {
-                    Toast.makeText(getContext(),"You have Not logged in Successfully",Toast.LENGTH_LONG);
+                    Toast.makeText(getContext(), "You have Not logged in Successfully", Toast.LENGTH_SHORT);
                 }
 
             }
@@ -97,6 +107,15 @@ public class LogIn extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_log_in, container, false);
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+
+        if (TextUtils.isEmpty(target)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 
 }
