@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
  * Created by Poojan on 16/07/2017.
  */
 
+/**
+ * for Password Validation
+ */
 public class PasswordValidator {
     private Pattern pattern;
     private Matcher matcher;

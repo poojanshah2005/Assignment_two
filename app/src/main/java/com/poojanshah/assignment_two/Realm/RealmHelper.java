@@ -12,6 +12,9 @@ import io.realm.RealmResults;
  * Created by Poojan on 15/07/2017.
  */
 
+/**
+ * to get and save data to Realm
+ */
 public class RealmHelper {
     Realm realm;
 
@@ -19,6 +22,10 @@ public class RealmHelper {
         this.realm = realm;
     }
 
+    /**
+     * To save music information to realm
+     * @param result
+     */
     public void saveData(final Result result){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -29,6 +36,11 @@ public class RealmHelper {
         });
     }
 
+    /**
+     * to get all songs by genre/chart type
+     * @param type
+     * @return
+     */
     public ArrayList<Result> getMusic(String type){
         ArrayList<Result> output;
         RealmResults<Result> result = realm.where(Result.class).equalTo("genre",type).findAll();

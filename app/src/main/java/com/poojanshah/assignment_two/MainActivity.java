@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
         /**
          * for displaying result form api
-         * @param musicType
+         * @param musicType for type to display
          */
         private void displayResults(String musicType) {
             iMusicListPresenter.attachView(iMusicListView);
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     /**
      * fetch data based on the the type music genre
-     * @param music
+     * @param music list of songs
      */
     @Override
     public void onFetchDataSuccess(Music music) {
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements IMusicListView {
 
     /**
      * loading data from realm when there is no internet connection.
-     * @param throwable
+     * @param throwable error variable, to getCause and getMesage
      */
     @Override
     public void onFetchDataFailure(Throwable throwable) {
